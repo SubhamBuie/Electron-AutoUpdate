@@ -1,6 +1,6 @@
 {
   "name": "electron-app",
-  "version": "1.0.4",
+  "version": "1.0.0",
   "description": "My test electron app",
   "main": "main.js",
   "scripts": {
@@ -9,13 +9,13 @@
     "start": "electron .",
     "dist": "electron-builder"
   },
-  "repository": "https://github.com/cyrilgupta/electron-autoupdater",
+  "repository": "https://github.com/SubhamBuie/Electron-AutoUpdate",
   "publish": {
     "provider": "github",
     "releaseType": "release"
   },
   "build": {
-    "appId": "com.coderjeet.autoupdater",
+    "appId": "com.iwcn.autoupdater",
     "productName": "Autoupdater app",
     "win": {
       "target": "nsis"
@@ -24,7 +24,7 @@
       "output": "dist"
     }
   },
-  "author": "CoderJeet",
+  "author": "Iwcn",
   "license": "ISC",
   "devDependencies": {
     "electron": "^19.0.9",
