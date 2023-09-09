@@ -20,16 +20,9 @@ function createWindow() {
     },
   });
 
-  // Load the index.html of the app.
   win.loadFile("./screens/main/main.html");
-
-  // Open the DevTools.
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-// app.whenReady().then(createWindow);
 app.whenReady().then(() => {
   createWindow();
 
@@ -42,32 +35,49 @@ app.whenReady().then(() => {
 });
 
 autoUpdater.on("update-available", (info) => {
-  //   curWindow.showMessage(
-  //     `Update available. Current version ${app.getVersion()}`
-  //   );
   console.log(`Update available. Current version ${app.getVersion()}`);
+  const customNotification = new Notification({
+    title: "KhateRaho Notification",
+    subtitle: "KhateRaho POS Notification",
+    body: "KhateRaho Update available",
+    silent: false,
+
+    timeoutType: "default",
+    urgency: "critical",
+  });
+  customNotification.show();
   autoUpdater.downloadUpdate();
-  //curWindow.showMessage(pth);
 });
 
 autoUpdater.on("update-not-available", (info) => {
-  //   curWindow.showMessage(
-  //     `No update available. Current version ${app.getVersion()}`
-  //   );
   console.log(`No update available. Current version ${app.getVersion()}`);
 });
 
-/*Download Completion Message*/
 autoUpdater.on("update-downloaded", (info) => {
-  //   curWindow.showMessage(
-  //     `Update downloaded. Current version ${app.getVersion()}`
-  //   );
-  console.log(`Update downloaded. Current version ${app.getVersion()}`);
+  const customNotification = new Notification({
+    title: "KhateRaho Notification",
+    subtitle: "KhateRaho POS Notification",
+    body: "KhateRaho Update Downloaded",
+    silent: false,
+
+    timeoutType: "default",
+    urgency: "critical",
+  });
+  customNotification.show();
 });
 
 autoUpdater.on("error", (info) => {
-  //   curWindow.showMessage(info);
   console.log(info);
+  const customNotification = new Notification({
+    title: "KhateRaho Notification",
+    subtitle: "KhateRaho POS Notification",
+    body: `${info}`,
+    silent: false,
+
+    timeoutType: "default",
+    urgency: "critical",
+  });
+  customNotification.show();
 });
 
 //Global exception handler
@@ -77,19 +87,7 @@ process.on("uncaughtException", function (err) {
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
-  // On macOS it is common for applications and their
-  // menu bar to stay active until the user quits
-  // explicitly with Cmd + Q
   if (process.platform !== "darwin") {
     app.quit();
   }
 });
-
-// app.on("activate", () => {
-//   // On macOS it's common to re-create a window in the
-//   // app when the dock icon is clicked and there are
-//   // no other windows open.
-//   if (BrowserWindow.getAllWindows().length === 0) {
-//     createWindow();
-//   }
-// });
